@@ -1,0 +1,12 @@
+.list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    margin-left: 20px;
+}
+
+
+.loader {
+    margin-left: 90px;
+}
