@@ -54,7 +54,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: 30 }}>
       <form onSubmit={onAddClick} className={css.formData}>
         <label>
           <span className={css.labelTitleName}>Name:</span>

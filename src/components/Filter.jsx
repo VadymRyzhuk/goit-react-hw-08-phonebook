@@ -9,7 +9,7 @@ const Filter = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: 30 }}>
       <p>
         Find contact by name:
         <input

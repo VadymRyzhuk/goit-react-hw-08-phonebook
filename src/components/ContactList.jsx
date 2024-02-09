@@ -1,35 +1,45 @@
-import React from 'react';
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
+//import { removeContact } from './redux/Contacts/contactsReducer';
+
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeContact } from './redux/Contacts/contactsReducer';
+import { Loader } from './Loader';
+import {
+  // selectContacts,
+  //selectFilter,
+  selectContactsIsLoading,
+  selectContactsError,
+  selectFilteredContacts,
+} from './redux/Contacts/contactsReducer.selectors';
+import css from './ContactList.module.css';
 import {
   apiGetContacts,
   apiDeleteContact,
+  removeContact,
 } from './redux/Contacts/contactsReducer';
-import css from './ContactList.module.css';
-import { Circles } from 'react-loader-spinner';
 
 const ContactList = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(store => store.contacts.contacts.items);
-  const filter = useSelector(store => store.contacts.filter);
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.trim().toLowerCase())
-  );
+  //const contacts = useSelector(selectContacts);
+  //const filter = useSelector(selectFilter);
+  const isLoading = useSelector(selectContactsIsLoading);
+  const error = useSelector(selectContactsError);
+  const filteredContacts = useSelector(selectFilteredContacts);
+
+  // const filteredContacts = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(filter.trim().toLowerCase())
+  // );
 
   //-----------------------------------------------------------------------------------add to local storage
   // useEffect(() => {
   //   const stringifiedContacts = JSON.stringify(contacts);
   //   localStorage.setItem('contacts', stringifiedContacts);
   // }, [contacts]);
-
+  //-----------------------------------------------------------------------------------add to local storage
   useEffect(() => {
     dispatch(apiGetContacts());
   }, [dispatch]);
-  //-----------------------------------------------------------------------------------add to local storage
-  const isLoading = useSelector(store => store.contacts.contacts.isLoading);
-  const error = useSelector(store => store.contacts.contacts.error);
 
   //-----------------------------------------------------------------------------------------------------------------------------------------------
   return (
@@ -38,13 +48,7 @@ const ContactList = () => {
         `Ooppsss, some error occured!!!`
       ) : isLoading ? (
         <div className={css.loader}>
-          <Circles
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} // 3 секунди
-          />
+          <Loader />
         </div>
       ) : (
         <ul>
