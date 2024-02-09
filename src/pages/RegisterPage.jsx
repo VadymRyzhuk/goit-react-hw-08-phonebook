@@ -9,11 +9,13 @@ const RegisterPage = () => {
     const name = event.currentTarget.elements.userName.value;
     const email = event.currentTarget.elements.userEmail.value;
     const password = event.currentTarget.elements.userPassword.value;
-    //console.log(name, email, password);
+    // console.log(name);
+    // console.log(email);
+    // console.log(password);
     const formData = {
-      name,
-      email,
-      password,
+      name: name,
+      email: email,
+      password: password,
     };
     dispatch(apiRegisterUser(formData));
     event.currentTarget.reset();

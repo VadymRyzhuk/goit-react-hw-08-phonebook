@@ -79,6 +79,6 @@ const authSlice = createSlice({
 });
 
 // Генератори екшенів
-export const {} = authSlice.actions;
+//export const {} = authSlice.actions;
 // Редюсер слайсу
 export const authReducer = authSlice.reducer;
