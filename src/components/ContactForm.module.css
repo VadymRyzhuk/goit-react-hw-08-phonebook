@@ -6,17 +6,34 @@
     
 }
 
+.inputForm {
+    background-color: rgb(226, 227, 228);
+    width: 200px;
+    height: 30px;
+}
+
 .labelTitleName {
     padding-right: 25px;
+
 }
 
 .labelTitleNumber {
     padding-right: 10px;
 }
 
-.btn {
+/* .btn {
     max-width: 100px;
     margin: 0 auto;
+    
+} */
+.btn {
+    width: 150px;
+    padding: 20px;
+        background-color: rgb(36, 130, 100);
+    color: white;
+    font-size: medium;
+    margin: 0 auto;
+    border-radius: 10px;
 }
 
 

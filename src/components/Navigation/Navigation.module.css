@@ -13,9 +13,22 @@
     transition: all .3s;
     margin-left: 20px;
     margin-top: 20px;
+    height: 25px;
 }
 
 .active {
-    background-color: green;
+    background-color: rgb(19, 159, 19);
     color: white;
+}
+
+
+.head {
+    margin-top: 40px;
+      /* width: 700px; */
+      display: flex;
+}
+
+.homeBtn {
+    left: 0;
+ 
 }

@@ -1,13 +1,14 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { Loader } from './Loader';
-import { Navigation } from './Navigation/Navigation';
-import { UserMenu } from './UserMenu';
+import { Loader } from '../Loader';
+import { Navigation } from '../Navigation/Navigation';
+import { UserMenu } from '../UserMenu';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAuthIsLoggedIn } from './redux/Auth/AuthSlice.selectors';
-import { apiRefreshUser } from './redux/Auth/authSlice';
-import { RestrictedRoute } from './RestrictedRoute';
-import { PrivateRoute } from './PrivateRoute';
+import { selectAuthIsLoggedIn } from '../redux/Auth/AuthSlice.selectors';
+import { apiRefreshUser } from '../redux/Auth/authSlice';
+import { RestrictedRoute } from '../RestrictedRoute';
+import { PrivateRoute } from '../PrivateRoute';
+import css from './App.module.css';
 
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -21,8 +22,9 @@ export const App = () => {
   useEffect(() => {
     dispatch(apiRefreshUser());
   }, [dispatch]);
+
   return (
-    <div style={{ maxWidth: 1000, margin: `0 auto` }}>
+    <div className={css.main}>
       <header style={{ display: 'flex', gap: 20 }}>
         <Navigation />
         {isLoggedIn && <UserMenu />}

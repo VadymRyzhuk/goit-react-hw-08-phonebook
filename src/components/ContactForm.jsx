@@ -64,6 +64,7 @@ const ContactForm = () => {
         <label>
           <span className={css.labelTitleName}>Name:</span>
           <input
+            className={css.inputForm}
             type="text"
             placeholder="Anna"
             name="name"
@@ -75,6 +76,7 @@ const ContactForm = () => {
         <label>
           <span className={css.labelTitleNumber}>Number:</span>
           <input
+            className={css.inputForm}
             type="tel"
             placeholder="50102050"
             name="number"

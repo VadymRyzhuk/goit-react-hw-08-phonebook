@@ -34,10 +34,11 @@ const ContactList = () => {
           <Loader />
         </div>
       ) : (
-        <ul>
+        <ul className={css.list}>
           {filteredContacts.map(contact => (
-            <li className={css.list} key={contact.id} id={contact.id}>
-              <span>{contact.name}:</span> <span>{contact.number}</span>
+            <li className={css.listItem} key={contact.id} id={contact.id}>
+              <span className={css.name}>{contact.name}:</span>
+              <span className={css.number}>{contact.number}</span>
               <button
                 onClick={() => {
                   dispatch(removeContact(contact.id));

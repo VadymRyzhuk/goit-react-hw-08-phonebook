@@ -1,12 +1,27 @@
-.list {
+.listItem {
     list-style: none;
     display: flex;
     justify-content: space-between;
     max-width: 450px;
     margin-left: 20px;
+   
 }
 
+.name {
+font-size: large;
+font-weight: 600;
+}
+/* 
+.number {
+font-style: oblique;
+} */
 
 .loader {
     margin-left: 90px;
-}
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
