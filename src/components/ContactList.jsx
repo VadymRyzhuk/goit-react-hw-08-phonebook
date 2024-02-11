@@ -1,12 +1,7 @@
-//import { useEffect } from 'react';
-//import { removeContact } from './redux/Contacts/contactsReducer';
-
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from './Loader';
 import {
-  // selectContacts,
-  //selectFilter,
   selectContactsIsLoading,
   selectContactsError,
   selectFilteredContacts,
@@ -17,31 +12,19 @@ import {
   apiDeleteContact,
   removeContact,
 } from './redux/Contacts/contactsReducer';
+import { toast } from 'react-toastify';
 
 const ContactList = () => {
   const dispatch = useDispatch();
 
-  //const contacts = useSelector(selectContacts);
-  //const filter = useSelector(selectFilter);
   const isLoading = useSelector(selectContactsIsLoading);
   const error = useSelector(selectContactsError);
   const filteredContacts = useSelector(selectFilteredContacts);
 
-  // const filteredContacts = contacts.filter(contact =>
-  //   contact.name.toLowerCase().includes(filter.trim().toLowerCase())
-  // );
-
-  //-----------------------------------------------------------------------------------add to local storage
-  // useEffect(() => {
-  //   const stringifiedContacts = JSON.stringify(contacts);
-  //   localStorage.setItem('contacts', stringifiedContacts);
-  // }, [contacts]);
-  //-----------------------------------------------------------------------------------add to local storage
   useEffect(() => {
     dispatch(apiGetContacts());
   }, [dispatch]);
 
-  //-----------------------------------------------------------------------------------------------------------------------------------------------
   return (
     <div>
       {error ? (
@@ -54,11 +37,15 @@ const ContactList = () => {
         <ul>
           {filteredContacts.map(contact => (
             <li className={css.list} key={contact.id} id={contact.id}>
-              <span>{contact.name}:</span> <span>{contact.phone}</span>
+              <span>{contact.name}:</span> <span>{contact.number}</span>
               <button
                 onClick={() => {
                   dispatch(removeContact(contact.id));
-                  dispatch(apiDeleteContact(contact.id));
+                  dispatch(apiDeleteContact(contact.id))
+                    .unwrap()
+                    .then(data => {
+                      toast.success(`${data.name} was successfully deleted!`);
+                    });
                 }}
               >
                 Delete

@@ -13,16 +13,17 @@ const RegisterPage = () => {
     // console.log(email);
     // console.log(password);
     const formData = {
-      name: name,
-      email: email,
-      password: password,
+      name,
+      email,
+      password,
     };
+    //console.log(formData);
     dispatch(apiRegisterUser(formData));
     event.currentTarget.reset();
   };
   return (
     <div style={{ marginLeft: 30 }}>
-      <h1>RegisterPage</h1>
+      <h1>Register page</h1>
       <form
         onSubmit={onSubmitRegistr}
         style={{ display: 'flex', flexDirection: 'column', gap: 10 }}

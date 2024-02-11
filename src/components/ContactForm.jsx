@@ -5,12 +5,13 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { apiAddNewContact } from './redux/Contacts/contactsReducer';
+import { toast } from 'react-toastify';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(store => store.contacts.contacts.items);
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [number, setNumber] = useState('');
   const [newContact, setNewContact] = useState(null);
   const handleChange = event => {
     const nameValue = event.target.value.trim();
@@ -24,7 +25,11 @@ const ContactForm = () => {
 
   useEffect(() => {
     if (newContact) {
-      dispatch(apiAddNewContact(newContact));
+      dispatch(apiAddNewContact(newContact))
+        .unwrap()
+        .then(data => {
+          toast.success(`${data.name} was successfully added!`);
+        });
     }
   }, [dispatch, newContact]);
 
@@ -45,7 +50,7 @@ const ContactForm = () => {
     const contactToAdd = {
       id: nanoid(),
       name,
-      phone,
+      number,
     };
 
     setNewContact(contactToAdd);

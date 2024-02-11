@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getContacts, addNewContact, deleteContact } from 'services/api';
+import { authInstance } from '../Auth/authSlice';
+//import { getContacts, addNewContact, deleteContact } from 'services/api';
 
 export const apiGetContacts = createAsyncThunk(
   'contacts/apiGetContacts',
   async (_, thunkApi) => {
     try {
-      const contacts = await getContacts();
-      //  console.log(contacts);
-      return contacts;
+      const { data } = await authInstance.get('/contacts');
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -16,11 +16,11 @@ export const apiGetContacts = createAsyncThunk(
 
 export const apiAddNewContact = createAsyncThunk(
   'contacts/apiAddNewContact',
-  async (newContact, thunkApi) => {
+  async (formData, thunkApi) => {
     try {
-      const contact = await addNewContact(newContact);
-      // console.log(contact);
-      return contact;
+      //const contact = await addNewContact(newContact);
+      const { data } = await authInstance.post('/contacts', formData);
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -31,9 +31,10 @@ export const apiDeleteContact = createAsyncThunk(
   'contacts/apiDeleteContact',
   async (contactId, thunkApi) => {
     try {
-      const contact = await deleteContact(contactId);
+      // const contact = await deleteContact(contactId);
       // console.log(contact);
-      return contact;
+      const { data } = await authInstance.delete(`/contacts/${contactId}`);
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
