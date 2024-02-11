@@ -22,7 +22,7 @@ export const App = () => {
     dispatch(apiRefreshUser());
   }, [dispatch]);
   return (
-    <div>
+    <div style={{ maxWidth: 1000, margin: `0 auto` }}>
       <header style={{ display: 'flex', gap: 20 }}>
         <Navigation />
         {isLoggedIn && <UserMenu />}

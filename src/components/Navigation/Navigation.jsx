@@ -7,7 +7,7 @@ import { selectAuthIsLoggedIn } from 'components/redux/Auth/AuthSlice.selectors'
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   return (
-    <header>
+    <header style={{ marginTop: 40 }}>
       <NavLink
         className={({ isActive }) =>
           `${css.link} ${isActive ? css.active : ''}`

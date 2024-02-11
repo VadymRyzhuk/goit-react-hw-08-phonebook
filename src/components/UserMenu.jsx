@@ -14,7 +14,7 @@ export const UserMenu = () => {
 
   const userEmail = userData?.email ?? 'Could’t get user email';
   return (
-    <div>
+    <div style={{ marginTop: 40 }}>
       <p>{userEmail}</p>
       <button
         style={{ padding: 8 }}
