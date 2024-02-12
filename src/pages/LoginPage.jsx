@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { apiLoginUser } from 'components/redux/Auth/authSlice';
-import { selectAuthError } from 'components/redux/Auth/AuthSlice.selectors';
+//import { selectAuthError } from 'components/redux/Auth/AuthSlice.selectors';
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const error = useSelector(selectAuthError);
+  //const error = useSelector(selectAuthError);
   // useEffect(() => {
   //   if (error) {
   //     setTimeout(() => {
@@ -28,19 +28,22 @@ const LoginPage = () => {
     };
     //console.log(formData);
 
-    dispatch(apiLoginUser(formData));
+    dispatch(apiLoginUser(formData))
+      .unwrap()
+      .then(() => toast.success('Perfect! You was logged in!'))
+      .catch(() => toast.error('Please, write a correct email or password!'));
     // if (error) {
     //   toast.error('Please, write a correct email or password!'); // можливо, використовуйте більш конкретний текст помилки, якщо доступно
     // }
     //event.currentTarget.reset();
   };
 
-  useEffect(() => {
-    // Вивести toast при наявності помилки
-    if (error) {
-      toast.error('Please, write a correct email or password!');
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   // Вивести toast при наявності помилки
+  //   if (error) {
+  //     toast.error('Please, write a correct email or password!');
+  //   }
+  // }, [error]);
 
   return (
     <div style={{ marginLeft: 30 }}>

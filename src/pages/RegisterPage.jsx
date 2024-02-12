@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { apiRegisterUser } from 'components/redux/Auth/authSlice';
-import { selectAuthError } from 'components/redux/Auth/AuthSlice.selectors';
+//import { selectAuthError } from 'components/redux/Auth/AuthSlice.selectors';
 import { toast } from 'react-toastify';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
-  const error = useSelector(selectAuthError);
+  //const error = useSelector(selectAuthError);
   const onSubmitRegistr = event => {
     event.preventDefault();
     const name = event.currentTarget.elements.userName.value;
@@ -21,16 +21,19 @@ const RegisterPage = () => {
       password,
     };
     //console.log(formData);
-    dispatch(apiRegisterUser(formData));
+    dispatch(apiRegisterUser(formData))
+      .unwrap()
+      .then(() => toast.success('Perfect! Successfully registration!'))
+      .catch(() => toast.error('Please, write a correct email or password!'));
     // event.currentTarget.reset();
   };
 
-  useEffect(() => {
-    // Вивести toast при наявності помилки
-    if (error) {
-      toast.error('Please, write a correct email or password!');
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   // Вивести toast при наявності помилки
+  //   if (error) {
+  //     toast.error('Please, write a correct email or password!');
+  //   }
+  // }, [error]);
 
   return (
     <div style={{ marginLeft: 30 }}>
