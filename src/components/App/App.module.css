@@ -1,6 +1,6 @@
 .main {
        max-width: 700px;
-       height: 850px;
+       min-height: 850px;
     margin: 0 auto;
     border: 1px solid grey;
   box-shadow: 1px;
